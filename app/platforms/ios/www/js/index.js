@@ -3,7 +3,6 @@
 // Home Page
 
 
-
 $('#profile').css({borderRadius: "10px", border: "5px solid black", padding: "10px", textAlign: "center"});
 
 $('<a href="#research" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">RESEARCH TOPICS</a>').appendTo('#content');
@@ -12,11 +11,7 @@ $('<a href="#insta" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">INS
 $('<a href="#workout" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">WORKOUT</a>').appendTo('#content');
 $('<a href="#" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">ACCELEROMETER</a>').appendTo('#content');
 $('<a href="#compass" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">COMPASS</a>').appendTo('#content');
-<<<<<<< HEAD
-$('<a href="#" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">CAMERA</a>').appendTo('#content');
-=======
-$('<a href="#cam" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">CAMERA</a>').appendTo('#content');
->>>>>>> gh-pages
+$('<a href="#camera" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">CAMERA</a>').appendTo('#content');
 $('<a href="#" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">MASHUP #1</a>').appendTo('#content');
 $('<a href="#" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">MASHUP #2</a>').appendTo('#content');
 
@@ -40,6 +35,8 @@ re2.appendTo('#top2');
 re3.appendTo('#top3');
 
 
+
+//camera page
 
 
 
@@ -66,47 +63,47 @@ document.addEventListener("deviceready", onDeviceReady, false);
 //start instagram api
 
 $("#insta").on('pageinit', function(){
+  
+               
+            $(function(){
+                 
+                 var url = "https://api.instagram.com/v1/tags/fitness/media/recent?callback=?&amp;client_id=2e9a62e00d65456196468390b7d46103"
+                 
+                 $.getJSON(url, src);
+                 
+               });
 
+            function src(info){
                
                
-                    $.ajax({
-                      url: 'https://api.instagram.com/v1/tags/fitness/media/recent?callback=?&amp;client_id=2e9a62e00d65456196468390b7d46103',
-                      type: 'GET',
-                      data: {},
-                      dataType: 'json',
-                      success: function(info){
+               console.log(info);
+               
+                    $.each(info.data, function(index, photo){
                       
-                      for(var i=0, x=info.data.length; i<x; i++){
-                      var target = info.data[i];
-                   
-                      $('<li>'+'<a href="'+ target.images.standard_resolution.url + '_blank' + '">'+
-                        '<img src="'+ target.images.standard_resolution.url +'"/>'+
+                      var pic = "<li class='picClass'><a href='#home'><img src='" + photo.images.thumbnail.url +"' /></a></li>";
+                      
                        
-                        '</a>' + '</li>'
-                        ).appendTo('#picId');
-                      
-                          //console.log(target.images);
-                     
-                      }
+                          
+                          
                            
-                      $('#picId').listview("refresh");
-                    }
+                           //console.log(user);
                     
-                });
+                           $('#picId').append(pic);
+                           
+                    });//end each
+               
+            };
+               
+               
+               $('<button id="instaRef" class="ui-btn ui-mini">REFRESH</button>').prependTo('#instaData');
+               
+               $('#instaRef').on("click", src);
+                                 
+                                 
+                
+               
                
             
-     
-               
-               $('<button id="ref" class="ui-btn ui-mini">REFRESH IMAGES</button>').prependTo('#picId');
-
-               
-               
-               
-               
-    
-          
-      
-
 }); //end instagram api
 
 //Start workout page
@@ -162,19 +159,55 @@ $("#workout").on('pageinit', function(){
 });//End Workout Page
 
 
+$("#camera").on('pageinit', function(){
+                 
+                 
+        
+                function captureSuccess(mediaFiles) {
+                var i, len;
+                for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+                uploadFile(mediaFiles[i]);
+                }
+                }
+                
+                // Called if something bad happens.
+                //
+                function captureError(error) {
+                var msg = 'An error occurred during capture: ' + error.code;
+                navigator.notification.alert(msg, null, 'Uh oh!');
+                }
+                
+                // A button will call this function
+                //
+                function captureImage() {
+                // Launch device camera application,
+                // allowing user to capture up to 2 images
+                navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 2});
+                }
+                
+                // Upload files to server
+                function uploadFile(mediaFile) {
+                var ft = new FileTransfer(),
+                path = mediaFile.fullPath,
+                name = mediaFile.name;
+                
+                ft.upload(path,
+                          "http://my.domain.com/upload.php",
+                          function(result) {
+                          console.log('Upload success: ' + result.responseCode);
+                          console.log(result.bytesSent + ' bytes sent');
+                          },
+                          function(error) {
+                          console.log('Error uploading file ' + path + ': ' + error.code);
+                          },
+                          { fileName: name });
+                }
+                
+                
+$('<button class="ui-btn ui-mini">Capture Image</button>').on("click", captureImage).appendTo('#cam');
+                 
 
-$("#cam").on('pageinit', function(){
-             
-             
-          //  $('<button id="ref" class="ui-btn ui-mini">TAKE PICTURE!</button>').on("click", capturePhoto).appendTo('#camPic');
-               
-               
-               
-});//END CAMERA PAGE
-
-
-
-
+});//End Camera Page
 
 
 
@@ -188,6 +221,7 @@ function onDeviceReady() {
     
     
                                 //start inAppWebBrowser controls for git page
+    
     function webA(){
         
         window.open('https://github.com/g70523/AVF', '_blank', 'location=yes');
@@ -205,7 +239,6 @@ function onDeviceReady() {
         window.open('http://g70523.github.io/AVF/application/platforms/android/assets/www/index.html', '_blank', 'location=yes');
         
     };
-
     
                                 //end inAppWebBrowser controls
     
@@ -240,6 +273,11 @@ function onDeviceReady() {
     $('#gitA').on("click", webA)/*inAppWebBrowser*/
     $('#gitB').on("click", webB)/*inAppWebBrowser*/
     $('#gitC').on("click", webC)/*inAppWebBrowser*/
+    
+
+
+
+
 
 
 }
