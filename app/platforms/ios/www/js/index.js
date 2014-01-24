@@ -3,13 +3,7 @@
 // Home Page
 
 
-<<<<<<< HEAD
-=======
 
-
-
-
->>>>>>> gh-pages
 $('#profile').css({borderRadius: "10px", border: "5px solid black", padding: "10px", textAlign: "center"});
 
 $('<a href="#research" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">RESEARCH TOPICS</a>').appendTo('#content');
@@ -72,50 +66,8 @@ document.addEventListener("deviceready", onDeviceReady, false);
 //start instagram api
 
 $("#insta").on('pageinit', function(){
-  
-<<<<<<< HEAD
-               
-            $(function(){
-                 
-                 var url = "https://api.instagram.com/v1/tags/fitness/media/recent?callback=?&amp;client_id=2e9a62e00d65456196468390b7d46103"
-                 
-                 $.getJSON(url, src);
-                 
-               });
 
-            function src(info){
                
-               
-               console.log(info);
-               
-                    $.each(info.data, function(index, photo){
-                      
-                      var pic = "<li class='picClass'><a href='#home'><img src='" + photo.images.thumbnail.url +"' /></a></li>";
-                      
-                       
-                          
-                          
-                           
-                           //console.log(user);
-                    
-                           $('#picId').append(pic);
-                           
-                    });//end each
-               
-            };
-               
-               
-               $('<button id="instaRef" class="ui-btn ui-mini">REFRESH</button>').prependTo('#instaData');
-               
-               $('#instaRef').on("click", src);
-                                 
-                                 
-                
-               
-               
-            
-=======
-             
                
                     $.ajax({
                       url: 'https://api.instagram.com/v1/tags/fitness/media/recent?callback=?&amp;client_id=2e9a62e00d65456196468390b7d46103',
@@ -154,7 +106,7 @@ $("#insta").on('pageinit', function(){
     
           
       
->>>>>>> gh-pages
+
 }); //end instagram api
 
 //Start workout page
@@ -211,8 +163,6 @@ $("#workout").on('pageinit', function(){
 
 
 
-<<<<<<< HEAD
-=======
 $("#cam").on('pageinit', function(){
              
              
@@ -224,7 +174,7 @@ $("#cam").on('pageinit', function(){
 
 
 
->>>>>>> gh-pages
+
 
 
 
@@ -238,11 +188,6 @@ function onDeviceReady() {
     
     
                                 //start inAppWebBrowser controls for git page
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> gh-pages
     function webA(){
         
         window.open('https://github.com/g70523/AVF', '_blank', 'location=yes');
@@ -260,11 +205,7 @@ function onDeviceReady() {
         window.open('http://g70523.github.io/AVF/application/platforms/android/assets/www/index.html', '_blank', 'location=yes');
         
     };
-<<<<<<< HEAD
-=======
-   
-    
->>>>>>> gh-pages
+
     
                                 //end inAppWebBrowser controls
     
@@ -299,16 +240,6 @@ function onDeviceReady() {
     $('#gitA').on("click", webA)/*inAppWebBrowser*/
     $('#gitB').on("click", webB)/*inAppWebBrowser*/
     $('#gitC').on("click", webC)/*inAppWebBrowser*/
-<<<<<<< HEAD
-    
-=======
-  
-   
->>>>>>> gh-pages
-
-
-
-
 
 
 }
