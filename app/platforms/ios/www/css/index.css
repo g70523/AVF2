@@ -1,5 +1,6 @@
 /*Louise Whitney*/
 /*AVF 1401*/
+<<<<<<< HEAD
 
 #picId {
 
@@ -30,3 +31,41 @@ box-shadow: 3px 3px 10px 5px #ABABAB;
 
 
 }
+=======
+
+#picId {
+
+    list-style-type:none;
+    
+}
+.picClass {
+    
+    background-color: transparent;
+    float: left;
+    margin: 10px;
+    -webkit-box-shadow: 10px 10px 20px 5px #616161;
+box-shadow: 10px 10px 20px 5px #616161;
+
+}
+.userContent {
+
+background: rgb(238,238,238); /* Old browsers */
+background: -moz-linear-gradient(top, rgba(238,238,238,1) 0%, rgba(204,204,204,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(238,238,238,1)), color-stop(100%,rgba(204,204,204,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom, rgba(238,238,238,1) 0%,rgba(204,204,204,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
+-webkit-box-shadow: 3px 3px 10px 5px #ABABAB;
+box-shadow: 3px 3px 10px 5px #ABABAB;
+
+
+}
+
+/* Instagram Page Start
+
+
+
+*/ Instagram Page End
+>>>>>>> gh-pages
