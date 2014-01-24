@@ -3,10 +3,13 @@
 // Home Page
 
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> dev
 $('#profile').css({borderRadius: "10px", border: "5px solid black", padding: "10px", textAlign: "center"});
 
 $('<a href="#research" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">RESEARCH TOPICS</a>').appendTo('#content');
@@ -15,7 +18,11 @@ $('<a href="#insta" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">INS
 $('<a href="#workout" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">WORKOUT</a>').appendTo('#content');
 $('<a href="#" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">ACCELEROMETER</a>').appendTo('#content');
 $('<a href="#compass" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">COMPASS</a>').appendTo('#content');
+<<<<<<< HEAD
 $('<a href="#cam" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">CAMERA</a>').appendTo('#content');
+=======
+$('<a href="#camera" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">CAMERA</a>').appendTo('#content');
+>>>>>>> dev
 $('<a href="#" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">MASHUP #1</a>').appendTo('#content');
 $('<a href="#" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">MASHUP #2</a>').appendTo('#content');
 
@@ -40,6 +47,11 @@ re3.appendTo('#top3');
 
 
 
+<<<<<<< HEAD
+=======
+//camera page
+
+>>>>>>> dev
 
 
 
@@ -66,6 +78,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 $("#insta").on('pageinit', function(){
   
+<<<<<<< HEAD
              
                
                     $.ajax({
@@ -105,6 +118,48 @@ $("#insta").on('pageinit', function(){
     
           
       
+=======
+               
+            $(function(){
+                 
+                 var url = "https://api.instagram.com/v1/tags/fitness/media/recent?callback=?&amp;client_id=2e9a62e00d65456196468390b7d46103"
+                 
+                 $.getJSON(url, src);
+                 
+               });
+
+            function src(info){
+               
+               
+               console.log(info);
+               
+                    $.each(info.data, function(index, photo){
+                      
+                      var pic = "<li class='picClass'><a href='#home'><img src='" + photo.images.thumbnail.url +"' /></a></li>";
+                      
+                       
+                          
+                          
+                           
+                           //console.log(user);
+                    
+                           $('#picId').append(pic);
+                           
+                    });//end each
+               
+            };
+               
+               
+               $('<button id="instaRef" class="ui-btn ui-mini">REFRESH</button>').prependTo('#instaData');
+               
+               $('#instaRef').on("click", src);
+                                 
+                                 
+                
+               
+               
+            
+>>>>>>> dev
 }); //end instagram api
 
 //Start workout page
@@ -160,6 +215,7 @@ $("#workout").on('pageinit', function(){
 });//End Workout Page
 
 
+<<<<<<< HEAD
 
 $("#cam").on('pageinit', function(){
              
@@ -172,6 +228,57 @@ $("#cam").on('pageinit', function(){
 
 
 
+=======
+$("#camera").on('pageinit', function(){
+                 
+                 
+        
+                function captureSuccess(mediaFiles) {
+                var i, len;
+                for (i = 0, len = mediaFiles.length; i < len; i += 1) {
+                uploadFile(mediaFiles[i]);
+                }
+                }
+                
+                // Called if something bad happens.
+                //
+                function captureError(error) {
+                var msg = 'An error occurred during capture: ' + error.code;
+                navigator.notification.alert(msg, null, 'Uh oh!');
+                }
+                
+                // A button will call this function
+                //
+                function captureImage() {
+                // Launch device camera application,
+                // allowing user to capture up to 2 images
+                navigator.device.capture.captureImage(captureSuccess, captureError, {limit: 2});
+                }
+                
+                // Upload files to server
+                function uploadFile(mediaFile) {
+                var ft = new FileTransfer(),
+                path = mediaFile.fullPath,
+                name = mediaFile.name;
+                
+                ft.upload(path,
+                          "http://my.domain.com/upload.php",
+                          function(result) {
+                          console.log('Upload success: ' + result.responseCode);
+                          console.log(result.bytesSent + ' bytes sent');
+                          },
+                          function(error) {
+                          console.log('Error uploading file ' + path + ': ' + error.code);
+                          },
+                          { fileName: name });
+                }
+                
+                
+$('<button class="ui-btn ui-mini">Capture Image</button>').on("click", captureImage).appendTo('#cam');
+                 
+
+});//End Camera Page
+>>>>>>> dev
 
 
 
@@ -185,7 +292,11 @@ function onDeviceReady() {
     
     
                                 //start inAppWebBrowser controls for git page
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> dev
     function webA(){
         
         window.open('https://github.com/g70523/AVF', '_blank', 'location=yes');
@@ -203,8 +314,11 @@ function onDeviceReady() {
         window.open('http://g70523.github.io/AVF/application/platforms/android/assets/www/index.html', '_blank', 'location=yes');
         
     };
+<<<<<<< HEAD
    
     
+=======
+>>>>>>> dev
     
                                 //end inAppWebBrowser controls
     
@@ -239,8 +353,12 @@ function onDeviceReady() {
     $('#gitA').on("click", webA)/*inAppWebBrowser*/
     $('#gitB').on("click", webB)/*inAppWebBrowser*/
     $('#gitC').on("click", webC)/*inAppWebBrowser*/
+<<<<<<< HEAD
   
    
+=======
+    
+>>>>>>> dev
 
 
 
