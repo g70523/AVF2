@@ -3,6 +3,10 @@
 // Home Page
 
 
+
+
+
+
 $('#profile').css({borderRadius: "10px", border: "5px solid black", padding: "10px", textAlign: "center"});
 
 $('<a href="#research" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">RESEARCH TOPICS</a>').appendTo('#content');
@@ -11,7 +15,7 @@ $('<a href="#insta" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">INS
 $('<a href="#workout" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">WORKOUT</a>').appendTo('#content');
 $('<a href="#" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">ACCELEROMETER</a>').appendTo('#content');
 $('<a href="#compass" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">COMPASS</a>').appendTo('#content');
-$('<a href="#" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">CAMERA</a>').appendTo('#content');
+$('<a href="#cam" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">CAMERA</a>').appendTo('#content');
 $('<a href="#" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">MASHUP #1</a>').appendTo('#content');
 $('<a href="#" class="ui-btn ui-icon-arrow-r ui-btn-icon-right ui-mini">MASHUP #2</a>').appendTo('#content');
 
@@ -62,46 +66,45 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 $("#insta").on('pageinit', function(){
   
+             
                
-            $(function(){
-                 
-                 var url = "https://api.instagram.com/v1/tags/fitness/media/recent?callback=?&amp;client_id=2e9a62e00d65456196468390b7d46103"
-                 
-                 $.getJSON(url, src);
-                 
-               });
-
-            function src(info){
-               
-               
-               console.log(info);
-               
-                    $.each(info.data, function(index, photo){
+                    $.ajax({
+                      url: 'https://api.instagram.com/v1/tags/fitness/media/recent?callback=?&amp;client_id=2e9a62e00d65456196468390b7d46103',
+                      type: 'GET',
+                      data: {},
+                      dataType: 'json',
+                      success: function(info){
                       
-                      var pic = "<li class='picClass'><a href='#home'><img src='" + photo.images.thumbnail.url +"' /></a></li>";
-                      
+                      for(var i=0, x=info.data.length; i<x; i++){
+                      var target = info.data[i];
+                   
+                      $('<li>'+'<a href="'+ target.images.standard_resolution.url + '_blank' + '">'+
+                        '<img src="'+ target.images.standard_resolution.url +'"/>'+
                        
-                          
-                          
+                        '</a>' + '</li>'
+                        ).appendTo('#picId');
+                      
+                          //console.log(target.images);
+                     
+                      }
                            
-                           //console.log(user);
+                      $('#picId').listview("refresh");
+                    }
                     
-                           $('#picId').append(pic);
-                           
-                    });//end each
-               
-            };
-               
-               
-               $('<button id="instaRef" class="ui-btn ui-mini">REFRESH</button>').prependTo('#instaData');
-               
-               $('#instaRef').on("click", src);
-                                 
-                                 
-                
-               
+                });
                
             
+     
+               
+               $('<button id="ref" class="ui-btn ui-mini">REFRESH IMAGES</button>').prependTo('#picId');
+
+               
+               
+               
+               
+    
+          
+      
 }); //end instagram api
 
 //Start workout page
@@ -158,6 +161,17 @@ $("#workout").on('pageinit', function(){
 
 
 
+$("#cam").on('pageinit', function(){
+             
+             
+          //  $('<button id="ref" class="ui-btn ui-mini">TAKE PICTURE!</button>').on("click", capturePhoto).appendTo('#camPic');
+               
+               
+               
+});//END CAMERA PAGE
+
+
+
 
 
 
@@ -171,7 +185,7 @@ function onDeviceReady() {
     
     
                                 //start inAppWebBrowser controls for git page
-    
+
     function webA(){
         
         window.open('https://github.com/g70523/AVF', '_blank', 'location=yes');
@@ -189,6 +203,8 @@ function onDeviceReady() {
         window.open('http://g70523.github.io/AVF/application/platforms/android/assets/www/index.html', '_blank', 'location=yes');
         
     };
+   
+    
     
                                 //end inAppWebBrowser controls
     
@@ -223,7 +239,8 @@ function onDeviceReady() {
     $('#gitA').on("click", webA)/*inAppWebBrowser*/
     $('#gitB').on("click", webB)/*inAppWebBrowser*/
     $('#gitC').on("click", webC)/*inAppWebBrowser*/
-    
+  
+   
 
 
 
